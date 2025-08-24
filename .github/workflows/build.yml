@@ -106,7 +106,11 @@ jobs:
           sudo apt update
           sudo apt install -y --no-install-recommends clang curl pkg-config ca-certificates llvm pkg-config curl libssl-dev yasm nasm libx264-dev
 
+      - name: Install dependencies
+        if: ${{ contains(matrix.os, 'mac') }}
+        run: brew install pkgconf x264
+
       - name: Build and statically link latest ffmpeg
         run: |
-          cargo build --features $FEATURES -vv
-          cargo test --features $FEATURES
+          cargo build --features "${{ env.FEATURES }}" -vv
+          cargo test --features "${{ env.FEATURES }}"
