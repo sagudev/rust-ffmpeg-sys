@@ -101,7 +101,7 @@ jobs:
         run: |
           cargo fmt --all -- --check
       - name: Install dependencies
-        if: ${{ contains(matrix.os, "ubuntu") }}
+        if: ${{ contains(matrix.os, 'ubuntu') }}
         run: |
           sudo apt update
           sudo apt install -y --no-install-recommends clang curl pkg-config ca-certificates llvm pkg-config curl libssl-dev yasm nasm libx264-dev
